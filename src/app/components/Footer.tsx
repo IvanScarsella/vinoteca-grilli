@@ -5,14 +5,26 @@ import logo from '../../../public/logo.png'
 import instagramLogo from '../../../public/instagramLogo.png'
 import whatsappLogo from '../../../public/whatsappLogo.png'
 import Link from "next/link"
+import { useGlobalContext } from "../../../context/store"
+import { useRouter, usePathname } from "next/navigation"
 
 export default function Footer() {
 
+   const router = useRouter()
+   const pathname = usePathname()
+
+   let {
+      showDeliveryModal,
+      setShowDeliveryModal,
+      selectedButton,
+      setSelectedButton
+   } = useGlobalContext()
+
    const footerButtons = [
-      { title: 'Inicio', function: '', },
-      { title: 'Tienda', function: '', },
-      { title: 'Envío', function: '', },
-      { title: 'Contacto', function: '', }
+      { title: 'Inicio', src: '/', },
+      { title: 'Tienda', src: '/shop', },
+      { title: 'Envío' },
+      { title: 'Contacto' }
    ]
 
    const socialMedia = [
@@ -30,7 +42,7 @@ export default function Footer() {
       <footer className="h-96 w-full bg-gradient-to-b from-yellow1 to-[#987135] px-[50px] py-6 flex justify-between max-md:flex-col max-md:p-1 max-md:py-2 max-md:gap-4 max-md:h-auto">
          <div className="w-1/3 h-full flex flex-col justify-between max-md:flex-row max-md:w-full max-md:px-5">
             {footerButtons.map((button) => (
-               <p className="font-medium text-[32px] max-md:text-xl max-[450px]:text-base" key={button.title}>{button.title}</p>
+               <p className="font-medium text-[32px] max-md:text-xl max-[450px]:text-base" key={button.title} onClick={() => { setSelectedButton(button.title); button.src && button.src !== pathname ? router.push(`${button.src}`) : null }}>{button.title}</p>
             )
             )}
          </div>
