@@ -42,14 +42,14 @@ export default function Footer() {
          <div className="w-1/3 flex flex-col gap-8 justify-center items-center max-md:w-full">
             <div className="flex gap-9 justify-center">
                {socialMedia.map((media) => (
-                  <Link href={media.href} target='_blank'>
+                  <Link href={media.href} target='_blank' key={media.name}>
                      <Image src={media.src} alt={media.name} className="size-12 cursor-pointer max-md:size-10" />
                   </Link>
                ))}
             </div>
             <ul className="list-disc ">
                {footerItems.map((item) => (
-                  <li className="text-[15px] max-md:tracking-tight font-normal">{item}</li>
+                  <li className="text-[15px] max-md:tracking-tight font-normal" key={item}>{item}</li>
                ))}
             </ul>
          </div>
