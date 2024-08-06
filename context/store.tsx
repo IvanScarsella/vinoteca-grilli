@@ -1,32 +1,35 @@
-' use client'
+'use client'
 
-import { createContext, useContext, useState, Dispatch, SetStateAction } from "react"
+import { createContext, useContext, useState, Dispatch, SetStateAction, ReactNode } from "react";
 
-export const GlobalContext = createContext({
+type GlobalContextType = {
+   showDeliveryModal: boolean;
+   setShowDeliveryModal: Dispatch<SetStateAction<boolean>>;
+   selectedButton: string;
+   setSelectedButton: Dispatch<SetStateAction<string>>;
+};
+
+export const GlobalContext = createContext<GlobalContextType>({
    showDeliveryModal: false,
-   setShowDeliveryModal: (boolean: boolean) => { },
-   // setShowDeliveryModal: {} as Dispatch<SetStateAction<boolean>>,
+   setShowDeliveryModal: () => { },
    selectedButton: '',
-   setSelectedButton: (string: any) => { }
-   // setSelectedButton: {} as Dispatch<SetStateAction<string>>
-})
+   setSelectedButton: () => { }
+});
 
-export const GlobalContextProvider = ({ children }: any) => {
+export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
+   const [showDeliveryModal, setShowDeliveryModal] = useState(false);
+   const [selectedButton, setSelectedButton] = useState('Inicio');
 
-   const [showDeliveryModal, setShowDeliveryModal] = useState(false)
-   const [selectedButton, setSelectedButton] = useState('Inicio')
-   console.log(showDeliveryModal)
-   console.log(selectedButton)
    return (
       <GlobalContext.Provider value={{
          showDeliveryModal,
-         setShowDeliveryModal: setShowDeliveryModal,
+         setShowDeliveryModal,
          selectedButton,
-         setSelectedButton: setSelectedButton
+         setSelectedButton
       }}>
          {children}
       </GlobalContext.Provider>
-   )
-}
+   );
+};
 
-export const useGlobalContext = () => useContext(GlobalContext)
+export const useGlobalContext = () => useContext(GlobalContext);

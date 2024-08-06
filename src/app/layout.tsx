@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Delivery from "./components/Delivery";
+import { GlobalContextProvider } from "../../context/store";
 
 const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ['latin'] });
 
@@ -18,12 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} text-black1`}>
-        <Navbar />
-        <div>
-          {children}
-        </div>
-        <Footer />
+      <body className={`${inter.className} text-black1 flex flex-col items-center`}>
+        <GlobalContextProvider>
+          <Navbar />
+          <div>
+            {children}
+          </div>
+          <Delivery />
+          <Footer />
+        </GlobalContextProvider>
       </body>
     </html>
   );
