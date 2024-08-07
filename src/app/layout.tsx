@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Delivery from "./components/Delivery";
+import Instructions from "./components/Instructions";
 import { GlobalContextProvider } from "../../context/store";
 
 const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ['latin'] });
@@ -27,6 +28,7 @@ export default function RootLayout({
             {children}
           </div>
           <Delivery />
+          <Instructions />
           <Footer />
         </GlobalContextProvider>
       </body>

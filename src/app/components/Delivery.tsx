@@ -8,8 +8,6 @@ import logo2 from "../../../public/logo2.png"
 export default function Delivery() {
 
    let {
-      showDeliveryModal,
-      setShowDeliveryModal,
       selectedButton,
       setSelectedButton
    } = useGlobalContext()
@@ -27,7 +25,7 @@ export default function Delivery() {
             <Image src={close} alt='close' className='size-[54px] max-md:size-10 cursor-pointer border border-white rounded-full absolute top-5 right-6 hover:scale-[1.2]' onClick={() => setSelectedButton('')} />
             <div className="mt-[30px] flex flex-col">
                {deliveryItems.map((item) => (
-                  <div className="px-4 items-center justify-center gap-10 inline-flex">
+                  <div className="px-4 items-center justify-center gap-10 inline-flex" key={item.distance}>
                      <div className="text-center text-[40px] max-md:text-3xl font-medium">{item.distance}</div>
                      <div className="text-center text-[40px] max-md:text-3xl font-medium">{item.price}</div>
                   </div>
