@@ -17,13 +17,13 @@ export default function Home() {
   return (
     <section className="bg-white1">
       <ImagesCarousel />
-      <div className="flex flex-col px-[50px] max-md:px-4">
-        <div className="flex flex-row items-center my-[26px]">
+      <div className="flex flex-col">
+        <div className="flex flex-row items-center my-[26px] px-[50px] max-md:px-4">
           <p className="text-4xl max-md:text-xl min-w-[353px] max-md:min-w-[187px] max-md:w- tracking-tight mr-[33px] max-md:mr-1.5">Nuestros productos</p>
           <div className="w-full h-px bg-black1" />
           <p className="text-xl max-md:text-base min-w-[61px] max-md:max-w-12 max-md:min-w-[49px] max-md:w-full ml-[33px] max-md:ml-1.5">Más +</p>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 max-md:gap-2 justify-center max-md:justify-start w-screen max-w-full overflow-x-auto scroll-smooth overflow-clip px-4">
           {products.map((product) => (
             <Card data={product} />
           ))}
