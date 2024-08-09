@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Card(data: any) {
 
-   console.log(data.data)
    const productData = data.data;
+
    return (
       <div className="h-[500px] w-[323px] max-[1439px]:w-72 max-[1439px]:h-[450px] max-xl:w-56 max-lg:w-40 max-lg:max-w-40 max-xl:h-96 max-lg:h-[280px] rounded-[10px] flex-shrink-0">
          <Image src={productData?.image} alt={productData?.name} className="size-full relative top-0 rounded-[10px]" />
