@@ -22,7 +22,7 @@ export default function Instructions() {
       <div className={`w-[716px] max-md:w-3/4 h-[639px] max-h-[415px] max-md:h-96  bg-yellow2 rounded-[10px] flex-col justify-start items-start inline-flex fixed m-auto top-0 left-0 right-0 bottom-0 z-10 ${!showInstructionsModal ? 'hidden' : ''}`}>
          <div className="max-md:w-full relative">
             <div className="text-center mt-10 max-md:mt-12 text-4xl max-md:text-2xl font-normal"> Instrucciones de uso</div>
-            <Image src={close} alt='close' className='size-[54px] max-md:size-10 cursor-pointer border border-white rounded-full absolute top-8 max-md:top-2 right-6 max-md:right-2 hover:scale-[1.2]' onClick={() => setShowInstructionsModal(false)} />
+            <Image src={close} alt='close' className='size-[54px] max-md:size-10 cursor-pointer border border-white rounded-full absolute top-8 max-md:top-2 right-6 max-md:right-2 hover:scale-[1.2] transition-all ease-in-out' onClick={() => setShowInstructionsModal(false)} />
             <div className="mt-[30px] flex flex-col">
                {instructionsItems.map((item) => (
                   <div className="gap-10 inline-flex px-[18px]" key={item}>

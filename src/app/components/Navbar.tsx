@@ -32,14 +32,14 @@ export default function Navbar() {
             <div className="self-stretch justify-center items-center gap-8 flex">
                {navbarButtons.map((button) => (
                   <div className={`${selectedButton === button.title ? 'bg-yellow1 border-x-4 border-[#f2f2f2] opacity-100' : 'opacity-75'} p-2.5 justify-center items-center gap-2.5 flex cursor-pointer`} key={button.title} onClick={() => { setSelectedButton(button.title); button.src && button.src !== pathname ? router.push(`${button.src}`) : null; button.title === 'Envíos' ? setShowDeliveryModal(!showDeliveryModal) : null }}>
-                     <div className={`${selectedButton === button.title ? 'text-black1' : 'text-white'} text-[32px] font-medium hover:scale-110`}>{button.title}</div>
+                     <div className={`${selectedButton === button.title ? 'text-black1' : 'text-white'} text-[32px] font-medium hover:scale-110 transition-all ease-in-out`}>{button.title}</div>
                   </div>
                ))}
             </div>
          </div>
          <div className="flex justify-between px-4 bg-opacity-0 fixed z-10 w-full sm:hidden">
-            <Image src={menu} alt="menu" className="size-10 cursor-pointer hover:scale-[1.2]" />
-            <Image src={bag} alt="bag" className="size-10 cursor-pointer hover:scale-[1.2]" />
+            <Image src={menu} alt="menu" className="size-10 cursor-pointer hover:scale-[1.2] transition-all ease-in-out" />
+            <Image src={bag} alt="bag" className="size-10 cursor-pointer hover:scale-[1.2] transition-all ease-in-out" />
          </div>
       </>
    )
