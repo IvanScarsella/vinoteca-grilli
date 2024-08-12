@@ -21,8 +21,8 @@ export default function Shop() {
    } = useGlobalContext()
 
    return (
-      <section className="bg-black1 w-screen flex flex-col items-center">
-         <div className="w-screen max-w-[1440px] h-[475px] ">
+      <section className="bg-black1 flex flex-col items-center">
+         <div className=" max-w-[1440px] h-[475px] ">
             <Image
                src={wineImage}
                alt="shop-image"
@@ -44,7 +44,7 @@ export default function Shop() {
                ))}
             </div>
          </div>
-         <div className="bg-white1 pt-20 flex flex-row gap-4 max-md:gap-2 justify-center w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full overflow-x-auto scroll-smooth overflow-clip min-[1660px]:px-40 max-xl:px-20 max-[850px]:px-4 self-center flex-wrap pb-[78px] ">
+         <div className="bg-white1 pt-20 flex flex-row gap-4 max-md:gap-2 justify-center w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full min-[1660px]:px-36 max-xl:px-20 max-[850px]:px-4 self-center flex-wrap pb-[78px] ">
             {products.map((product) => (
                <Card data={product} className="" />
             ))}
