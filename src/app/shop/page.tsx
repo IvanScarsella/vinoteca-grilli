@@ -51,7 +51,7 @@ export default function Shop() {
          <div className="min-[1100px]:hidden bg-white1 pl-3 sm:pl-4 pt-1 sm:pt-2 w-full">
             <Image src={filterRed} alt='filter-icon-red' className="size-10 min-[450px]:size-12 sm:size-14 md:size-16 hover:scale-[1.2] transition-all ease-in-out cursor-pointer" onClick={() =>
                setOpenFilter((value) => !value)} />
-            <div className={`${openFilter ? 'hidden' : null} flex flex-col mt-2`}>
+            <div className={`${!openFilter ? 'hidden' : null} flex flex-col mt-2`}>
                {filters.map((filter) => (
                   <select className="w-[170px] h-10 rounded-r-[10px] px-4 py-2 text-base border border-black1 text-center">
                      <option value="">
