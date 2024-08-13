@@ -11,7 +11,10 @@ import { useGlobalContext } from "../../context/store";
 export default function Home() {
 
   let {
-    products
+    products,
+    showDeliveryModal,
+    setShowDeliveryModal,
+    selectedButton
   } = useGlobalContext()
 
 
@@ -22,7 +25,7 @@ export default function Home() {
   ]
 
   return (
-    <section className="bg-white1 pb-20">
+    <section className={`bg-white1 pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
       <ImagesCarousel />
       {sections.map((section) => (
 

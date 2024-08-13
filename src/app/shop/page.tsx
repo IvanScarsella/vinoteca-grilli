@@ -21,11 +21,11 @@ export default function Shop() {
    ]
 
    let {
-      products
+      products, selectedButton
    } = useGlobalContext()
 
    return (
-      <section className="bg-black1 flex flex-col items-center">
+      <section className={`bg-black1 flex flex-col items-center ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
          <div className=" max-w-[1440px] h-[475px] ">
             <Image
                src={wineImage}

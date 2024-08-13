@@ -9,19 +9,19 @@ export default function Product(id: any) {
 
    const [product, setProduct] = useState<Product>()
 
-   const { products } = useGlobalContext()
+   const { products, selectedButton } = useGlobalContext()
 
    useEffect(() => {
       setProduct(products.find((product) => product.id == id.params.id))
    }, [])
 
    return (
-      <div className="mt-[70px] bg-white1 px-[50px] pb-20">
+      <div className={`mt-[70px] bg-white1 px-[50px] pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
          <p className="text-[#555454] text-2xl font-normal pt-[34px]">Tienda / Vinos / Tinto / Alamos</p>
          <div className="flex flex-row mt-[68px] gap-20">
             <div className="rounded-[10px] h-[600px] w-[436px] overflow-hidden">
                {product?.image ?
-                  <Image src={product?.image} alt='product-image' className="container h-full w-full rounded-[10px] hover:scale-110" />
+                  <Image src={product?.image} alt='product-image' className="container h-full w-full rounded-[10px] hover:scale-110 transition-all ease-in-out" />
                   : null}
             </div>
             <div className="flex flex-col gap-8 justify-between pt-[13px]">
