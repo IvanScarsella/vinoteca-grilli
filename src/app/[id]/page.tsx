@@ -16,8 +16,8 @@ export default function Product(id: any) {
    }, [])
 
    return (
-      <div className={`mt-[70px] bg-white1 px-[50px] pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
-         <p className="text-[#555454] text-2xl font-normal pt-[34px]">Tienda / Vinos / Tinto / Alamos</p>
+      <section className={`sm:mt-[70px]  bg-white1 px-[50px] pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
+         <p className="text-[#555454] text-2xl font-normal pt-[34px] min-[360px]:pt-[65px]">Tienda / Vinos / Tinto / Alamos</p>
          <div className="flex flex-row mt-[68px] gap-20">
             <div className="rounded-[10px] h-[600px] w-[436px] overflow-hidden">
                {product?.image ?
@@ -52,6 +52,6 @@ export default function Product(id: any) {
                <Card data={product} />
             ))}
          </div>
-      </div>
+      </section>
    )
 }
