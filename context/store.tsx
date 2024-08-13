@@ -29,8 +29,11 @@ export const GlobalContext = createContext<GlobalContextType>({
 
 export type Product = {
    name: string,
-   price: string,
-   image: StaticImageData
+   price: number,
+   image: StaticImageData,
+   description: string,
+   stock: number,
+   id: number
 }
 
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
@@ -39,14 +42,14 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
    const [selectedButton, setSelectedButton] = useState('Inicio');
 
    const products = [
-      { name: 'Nombre del producto', price: '100.00', image: product1 },
-      { name: 'Nombre del producto', price: '100.00', image: product2 },
-      { name: 'Nombre del producto', price: '100.00', image: product3 },
-      { name: 'Nombre del producto', price: '100.00', image: product4 },
-      { name: 'Nombre del producto', price: '100.00', image: product1 },
-      { name: 'Nombre del producto', price: '100.00', image: product2 },
-      { name: 'Nombre del producto', price: '100.00', image: product3 },
-      { name: 'Nombre del producto', price: '100.00', image: product4 },
+      { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 1 },
+      { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 2 },
+      { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 3 },
+      { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 4 },
+      { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 5 },
+      { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 6 },
+      { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 7 },
+      { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 8 },
    ]
 
    return (
