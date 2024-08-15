@@ -5,6 +5,7 @@ import menu from "../../../public/menu.svg"
 import menuBlack from "../../../public/menuBlack.png"
 import bag from "../../../public/bag.svg"
 import bagBlack from "../../../public/bagBlack.png"
+import arrow from "../../../public/arrow.png"
 import close from "../../../public/close.svg"
 import Image from "next/image"
 import { useGlobalContext } from "../../../context/store"
@@ -16,6 +17,7 @@ export default function Navbar() {
    const pathname = usePathname()
 
    const [showMenu, setShowMenu] = useState(false)
+   const [isVisible, setIsVisible] = useState(false);
 
    const navbarButtons = [
       { title: 'Inicio', src: '/' },
@@ -30,6 +32,18 @@ export default function Navbar() {
       selectedButton,
       setSelectedButton
    } = useGlobalContext()
+
+   const toggleVisibility = () => {
+      if (window.scrollY > 1083) {
+         setIsVisible(true);
+      } else {
+         setIsVisible(false);
+      }
+   };
+   useEffect(() => {
+      window.addEventListener('scroll', toggleVisibility);
+      return () => window.removeEventListener('scroll', toggleVisibility);
+   }, []);
 
    return (
       <>
@@ -51,6 +65,16 @@ export default function Navbar() {
                ))}
             </div>
             <Image src={pathname !== '/' || '/shop' ? bagBlack : bag} alt="bag" className="size-10 cursor-pointer hover:scale-[1.2] transition-all ease-in-out" />
+         </div>
+         <div>
+            {isVisible && (
+               <Image src={arrow} alt='arrow' className={`fixed bottom-[219px] right-[15px] sm:hidden`} onClick={() => {
+                  window.scrollTo({
+                     top: 0,
+                     behavior: 'smooth',
+                  });
+               }} />
+            )}
          </div>
       </>
    )
