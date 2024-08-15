@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Delivery from "./components/Delivery";
 import Instructions from "./components/Instructions";
 import { GlobalContextProvider } from "../../context/store";
+import Cart from "./components/Cart";
 
 const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <div>
             {children}
           </div>
+          <Cart />
           <Delivery />
           <Instructions />
           <Footer />
