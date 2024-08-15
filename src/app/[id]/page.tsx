@@ -9,7 +9,7 @@ export default function Product(id: any) {
 
    const [product, setProduct] = useState<Product>()
 
-   const { products, selectedButton } = useGlobalContext()
+   const { products, selectedButton, addToCart, setShowInstructionsModal } = useGlobalContext()
 
    useEffect(() => {
       setProduct(products.find((product) => product.id == id.params.id))
@@ -42,8 +42,8 @@ export default function Product(id: any) {
                <p className="text-2xl font-medium max-lg:hidden">Descripción</p>
                <p className="text-2xl font-medium max-w-[500px] max-lg:hidden">{product?.description}</p>
                <div className="flex flex-row max-lg:flex-col gap-6">
-                  <button className="bg-[#B94B2D] rounded-lg text-2xl max-sm:text-[15px] sm:text-base text-white1 py-[7px] px-[px] max-sm:px-2.5 max-lg:w-full w-1/2 hover:scale-[1.1]">Agregar al carrito</button>
-                  <button className="bg-[#842E3D] rounded-lg text-2xl max-sm:text-[15px] sm:text-base text-white1 py-[7px] px-[px] max-sm:px-2.5 max-lg:w-full w-1/2 hover:scale-[1.1]">Encargar</button>
+                  <button className="bg-[#B94B2D] rounded-lg text-2xl max-sm:text-[15px] sm:text-base text-white1 py-[7px] px-[px] max-sm:px-2.5 max-lg:w-full w-1/2 hover:scale-[1.1]" onClick={() => addToCart(product!)}>Agregar al carrito</button>
+                  <button className="bg-[#842E3D] rounded-lg text-2xl max-sm:text-[15px] sm:text-base text-white1 py-[7px] px-[px] max-sm:px-2.5 max-lg:w-full w-1/2 hover:scale-[1.1]" onClick={() => setShowInstructionsModal(true)}>Encargar</button>
                </div>
             </div>
          </div>

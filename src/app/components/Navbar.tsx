@@ -33,7 +33,8 @@ export default function Navbar() {
       selectedButton,
       setSelectedButton,
       showCart,
-      setShowCart
+      setShowCart,
+      cart
    } = useGlobalContext()
 
    const toggleVisibility = () => {
@@ -71,7 +72,7 @@ export default function Navbar() {
          </div>
          <div className={`${showCart ? 'hidden' : ''}`} onClick={() => setShowCart((value) => !value)}>
             <Image src={bagRed} alt='red bag' className="fixed lg:top-32 sm:top-20 right-[11px] z-10 max-sm:hidden max-lg:size-16 cursor-pointer hover:scale-[1.15] transition-all ease-in-out " />
-            <div className="bg-[#F84545] size-[25px] max-lg:size-5 max-sm:size-3.5 fixed lg:top-[195px] sm:top-[131px] max-sm:top-10 right-[11px] max-sm:right-4 z-10 rounded-full" ></div>
+            <div className={`bg-[#F84545] size-[25px] max-lg:size-5 max-sm:size-3.5 fixed lg:top-[195px] sm:top-[131px] max-sm:top-10 right-[11px] max-sm:right-4 z-10 rounded-full ${!cart.length ? 'hidden' : ''}`} ></div>
          </div>
          <div>
             {isVisible && (
