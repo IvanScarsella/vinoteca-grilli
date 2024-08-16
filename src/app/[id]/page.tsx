@@ -51,8 +51,8 @@ export default function Product(id: any) {
          <p className="text-[13px] sm:text-xl font-medium max-w-[500px] lg:hidden mt-2">{product?.description}</p>
          <p className="mt-[99px] max-sm:mt-5 sm:mt-8 text-[40px] max-sm:text-2xl lg:ml-9 xl:ml-12">Productos relacionados</p>
          <div className="flex flex-row gap-4 max-md:gap-2 justify-center max-[720px]:justify-start w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full overflow-x-auto scroll-smooth overflow-clip px-4 self-center mt-5">
-            {products.slice(0, 4).map((product) => (
-               <Card data={product} />
+            {products.slice(0, 4).map((product, index) => (
+               <Card data={product} key={index} />
             ))}
          </div>
       </section>

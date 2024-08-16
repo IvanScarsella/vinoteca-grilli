@@ -37,8 +37,8 @@ export default function Home() {
             <p className="text-xl max-md:text-base min-w-[61px] max-md:max-w-12 max-md:min-w-[49px] max-md:w-full ml-[33px] max-md:ml-1.5">Más +</p>
           </div>
           <div className="flex flex-row gap-4 max-md:gap-2 justify-center max-[720px]:justify-start w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full overflow-x-auto scroll-smooth overflow-clip px-4 self-center">
-            {section.products.slice(0, 4).map((product) => (
-              <Card data={product} />
+            {section.products.slice(0, 4).map((product, index) => (
+              <Card data={product} key={index} />
             ))}
           </div>
         </div>
