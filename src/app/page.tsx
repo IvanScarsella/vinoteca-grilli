@@ -27,9 +27,9 @@ export default function Home() {
   return (
     <section className={`bg-white1 pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
       <ImagesCarousel />
-      {sections.map((section) => (
+      {sections.map((section, index) => (
 
-        <div className="flex flex-col mb-3">
+        <div className="flex flex-col mb-3" key={index}>
           <div className="flex flex-row items-center my-[26px] px-[50px] max-md:px-4">
             {section.sectionImage ? <Image src={section.sectionImage} alt={section.sectionName} className="size-[30px] mr-4 max-md:hidden" /> : null}
             <p className="text-4xl max-md:text-xl text-nowrap font-normal tracking-tight mr-[33px] max-md:mr-1.5">{section.sectionName}</p>

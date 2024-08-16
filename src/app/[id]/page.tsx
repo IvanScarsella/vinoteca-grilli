@@ -13,7 +13,7 @@ export default function Product(id: any) {
 
    useEffect(() => {
       setProduct(products.find((product) => product.id == id.params.id))
-   }, [])
+   }, [id])
 
    return (
       <section className={`sm:mt-[70px] bg-white1 pb-20 max-sm:pb-7 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''} flex flex-col max-lg:items-center lg:4`}>
