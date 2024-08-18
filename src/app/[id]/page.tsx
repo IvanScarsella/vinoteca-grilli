@@ -5,7 +5,7 @@ import { Product, useGlobalContext } from "../../../context/store"
 import Image from "next/image"
 import Card from "../components/Card"
 
-export default function Product(id: any) {
+export default function ProductById(id: any) {
 
    const [productData, setProductData] = useState<Product>()
 
