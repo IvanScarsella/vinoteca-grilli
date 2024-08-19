@@ -19,6 +19,7 @@ export default function Navbar() {
 
    const [showMenu, setShowMenu] = useState(false)
    const [isVisible, setIsVisible] = useState(false);
+   const [showNotification, setShowNotification] = useState(false)
 
    const navbarButtons = [
       { title: 'Inicio', src: '/' },
@@ -49,6 +50,14 @@ export default function Navbar() {
       return () => window.removeEventListener('scroll', toggleVisibility);
    }, []);
 
+   useEffect(() => {
+      if (cart.length) {
+         setShowNotification(true)
+      } else {
+         setShowNotification(false)
+      }
+   }, [cart])
+   console.log(showNotification)
    return (
       <>
          <div className={`w-full h-[70px] max-md:h-[52px] bg-gradient-to-r from-[#7e7c7cba] via-[#969393ba] to-[#adaaaaba] backdrop-blur-sm justify-center items-center gap-8 inline-flex max-sm:hidden fixed z-10 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`} onMouseLeave={() => setShowMenu(false)}>
@@ -72,7 +81,7 @@ export default function Navbar() {
          </div>
          <div className={`${showCart ? 'hidden' : ''}`} onClick={() => setShowCart((value) => !value)}>
             <Image src={bagRed} alt='red bag' className="fixed lg:top-32 sm:top-20 right-[11px] z-10 max-sm:hidden max-lg:size-16 cursor-pointer hover:scale-[1.15] transition-all ease-in-out " />
-            <div className={`bg-[#F84545] size-[25px] max-lg:size-5 max-sm:size-3.5 fixed lg:top-[195px] sm:top-[131px] max-sm:top-10 right-[11px] max-sm:right-4 z-10 rounded-full ${!cart.length ? 'hidden' : ''}`} ></div>
+            <div className={`bg-[#F84545] size-[25px] max-lg:size-5 max-sm:size-3.5 fixed lg:top-[195px] sm:top-[131px] max-sm:top-10 right-[11px] max-sm:right-4 z-10 rounded-full ${!showNotification ? 'hidden' : ''}`} ></div>
          </div>
          <div>
             {isVisible && (

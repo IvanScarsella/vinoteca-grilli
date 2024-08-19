@@ -26,7 +26,7 @@ export default function Shop() {
 
    return (
       <section className={`bg-black1 flex flex-col items-center ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
-         <div className=" max-w-[1440px] h-[475px] ">
+         <div className="flex flex-col items-center justify-center w-full h-full max-h-[470px]">
             <Image
                src={wineImage}
                alt="shop-image"

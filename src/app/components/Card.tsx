@@ -18,7 +18,7 @@ export default function Card(data: any) {
          <div className="text-white1 relative bottom-[182px] max-md:bottom-[125px] left-0 h-[182px] w-full bg-[#302F2F80] py-[18px] max-md:py-2.5 px-2 max-md:px-1 flex flex-col gap-2.5 md:gap-1  xl:gap-2.5">
             <p className="text-2xl max-xl:text-xl max-lg:text-base max-md:text-sm" onClick={() => router.push(`/${productData.id}`)}>{productData?.name}</p>
             <p className="text-[32px] max-xl:text-3xl max-lg:text-2xl max-md:text-xl font-medium " onClick={() => router.push(`/${productData.id}`)}>$ {productData?.price}</p>
-            <button className="border border-white1 rounded-lg p-2.5 float-right text-xl max-lg:text-base max-md:text-sm  hover:scale-[1.1] transition-all ease-in-out" onClick={() => addToCart(productData)}>Agregar al carrito</button>
+            <button className="border border-white1 rounded-lg p-2.5 float-right text-xl max-lg:text-base max-md:text-sm transition-all ease-in-out" onClick={() => addToCart(productData)}>Agregar al carrito</button>
          </div>
       </div>
    )
