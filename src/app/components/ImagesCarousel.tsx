@@ -30,7 +30,7 @@ export default function ImagesCarousel() {
       <Carousel {...settings} className='flex flex-col items-center justify-center w-full h-full'>
          {images.map((image, index) => (
             <div key={index} className='flex justify-center items-center w-full'>
-               <Image src={image.src} alt={image.alt} className='w-full h-auto' />
+               <Image src={image.src} alt={image.alt} className='w-full h-auto max-h-[430px]' />
             </div>
          ))}
       </Carousel>
