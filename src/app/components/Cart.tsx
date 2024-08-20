@@ -22,7 +22,6 @@ export default function Cart() {
    } = useGlobalContext();
 
    useEffect(() => {
-
       let total = 0;
       for (let i = 0; i < cart.length; i++) {
          total += cart[i].price
@@ -56,7 +55,7 @@ export default function Cart() {
    };
 
    return (
-      <div className={`${!showCart ? 'hidden' : ''} fixed top-[70px] max-md:top-0 right-0 bg-white1 w-[740px] max-lg:w-[600px] max-md:w-[360px] px-[29px] max-md:px-4 flex flex-col z-10 sm:border border-black1 rounded-[10px]`}>
+      <div className={`fixed top-[70px] max-md:top-0 right-0 bg-white1 w-[740px] max-lg:w-[600px] max-md:w-[360px] px-[29px] max-md:px-4 flex flex-col z-10 sm:border border-black1 rounded-[10px] transform transition-transform duration-500 ${showCart ? 'translate-x-0' : 'translate-x-full'}`}>
          <div className="flex justify-between items-center mt-10 max-md:mt-6">
             <p className="text-[40px] max-lg:text-3xl max-md:text-2xl font-medium ml-2.5 max-md:ml-0">Carrito</p>
             <Image src={close} alt='close' className='hover:scale-[1.2] transition-all ease-in-out cursor-pointer max-lg:size-12 max-md:size-9' onClick={() => setShowCart((value) => !value)} />
