@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import Delivery from "./components/Delivery";
-import Instructions from "./components/Instructions";
-import { GlobalContextProvider } from "../../context/store";
-import Cart from "./components/Cart";
+import ClientWrapper from "./ClientWrapper"; // Importar el componente del cliente
 
 const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ['latin'] });
 
@@ -22,17 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} text-black1 flex flex-col items-center bg-white1`}>
-        <GlobalContextProvider>
-          <Navbar />
-          <div>
-            {children}
-          </div>
-          <Cart />
-          <Delivery />
-          <Instructions />
-          <Footer />
-        </GlobalContextProvider>
+      <body className={`${inter.className} text-black1 flex flex-col items-center bg-white1 w-screen`}>
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );

@@ -16,10 +16,10 @@ type GlobalContextType = {
    setShowDeliveryModal: Dispatch<SetStateAction<boolean>>;
    selectedButton: string;
    setSelectedButton: Dispatch<SetStateAction<string>>;
-   products: Product[];
+   // products: Product[];
    cart: Product[];
    addToCart: (product: Product) => void;
-   removeFromCart: (id: number) => void;
+   removeFromCart: (id: string) => void;
    clearCart: () => void;
 };
 
@@ -32,7 +32,7 @@ export const GlobalContext = createContext<GlobalContextType>({
    setShowDeliveryModal: () => { },
    selectedButton: '',
    setSelectedButton: () => { },
-   products: [] as Product[],
+   // products: [] as Product[],
    cart: [],
    addToCart: () => { },
    removeFromCart: () => { },
@@ -45,8 +45,14 @@ export type Product = {
    image: StaticImageData,
    description: string,
    stock: number,
-   id: number
+   id: number,
+   slug: Slug
 }
+
+export type Slug = {
+   current: string;
+   _type: string
+};
 
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
    const [showCart, setShowCart] = useState(false);
@@ -59,16 +65,16 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       return storedCart ? JSON.parse(storedCart) : [];
    });
 
-   const products = [
-      { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 1 },
-      { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 2 },
-      { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 3 },
-      { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 4 },
-      { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 5 },
-      { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 6 },
-      { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 7 },
-      { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 8 },
-   ]
+   // const products = [
+   //    { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 1 },
+   //    { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 2 },
+   //    { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 3 },
+   //    { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 4 },
+   //    { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 5 },
+   //    { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 6 },
+   //    { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 7 },
+   //    { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 8 },
+   // ]
 
    const addToCart = (product: Product) => {
       setCart(prevCart => {
@@ -78,9 +84,9 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       });
    };
 
-   const removeFromCart = (id: number) => {
+   const removeFromCart = (slug: string) => {
       setCart(prevCart => {
-         const newCart = prevCart.filter(product => product.id !== id);
+         const newCart = prevCart.filter(product => product.slug.current !== slug);
          localStorage.setItem('cart', JSON.stringify(newCart));
          return newCart;
       });
@@ -105,7 +111,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
          setShowDeliveryModal,
          selectedButton,
          setSelectedButton,
-         products,
+         // products,
          cart,
          addToCart,
          removeFromCart,

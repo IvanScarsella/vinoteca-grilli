@@ -6,12 +6,18 @@ import { Product } from "../../../context/store";
 import close from '../../../public/close.svg'
 import deleteProduct from '../../../public/delete.png'
 import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "@/sanity/lib/client";
 
 type CartProduct = Product & { quantity: number };
 
 export default function Cart() {
+
+   const builder = imageUrlBuilder(client);
+
    const [products, setProducts] = useState<CartProduct[]>([]);
    const [totalPrice, setTotalPrice] = useState<number>(0)
+   console.log(products[0])
 
    let {
       cart,
@@ -32,12 +38,12 @@ export default function Cart() {
    useEffect(() => {
       const productMap = new Map();
       cart.forEach((item) => {
-         if (productMap.has(item.id)) {
-            const existingProduct = productMap.get(item.id);
+         if (productMap.has(item.slug)) {
+            const existingProduct = productMap.get(item.slug);
             existingProduct.quantity += 1;
-            productMap.set(item.id, existingProduct);
+            productMap.set(item.slug, existingProduct);
          } else {
-            productMap.set(item.id, { ...item, quantity: 1 });
+            productMap.set(item.slug, { ...item, quantity: 1 });
          }
       });
 
@@ -63,12 +69,12 @@ export default function Cart() {
          <div className="flex flex-col items-center gap-6 max-lg:gap-4 mt-10 max-lg:mt-7 max-md:mt-5 overflow-y-auto scroll-smooth overflow-clip max-h-[600px] max-md:max-h-[450px]">
             {products?.map((product: any, index) => (
                <div key={index} className="flex rounded-[10px] border border-black1 w-[550px] max-lg:w-[500px] max-md:w-[312px]">
-                  <Image src={product.image} alt={product.name} className="h-[306px] max-lg:h-64 max-md:h-56 w-[206px] max-lg:w-44 max-md:w-36 rounded-l-[10px]" />
+                  <Image src={builder.image(product.image).width(323).height(500).url()} width={323} height={500} alt={product.name} className="h-[306px] max-lg:h-64 max-md:h-56 w-[206px] max-lg:w-44 max-md:w-36 rounded-l-[10px]" />
                   <div className="ml-[49px] max-lg:ml-8 max-md:ml-2 flex flex-col gap-2.5 max-lg:gap-2 py-[16.5px] max-lg:py-3">
                      <p className=" text-[24px] max-lg:text-[18px] max-md:text-base text-wrap max-md:w-40 font-medium">{product.name}</p>
                      <p className="text-[36px] max-lg:text-3xl max-md:text-2xl font-medium">$ {product.price}</p>
                      <p className="text-[24px] max-lg:text-[18px] max-md:text-base font-normal">Cantidad: {product.quantity}</p>
-                     <div className="flex items-center gap-4 max-md:gap-1 mt-[56px] max-lg:mt-[78px] max-md:mt-8 ml-[110px] max-md:ml-10 cursor-pointer" onClick={() => removeFromCart(product.id)}>
+                     <div className="flex items-center gap-4 max-md:gap-1 mt-[56px] max-lg:mt-[78px] max-md:mt-8 ml-[110px] max-md:ml-10 cursor-pointer" onClick={() => removeFromCart(product.slug.current)}>
                         <p className="text-[24px] max-lg:text-[18px] max-md:text-base font-normal">Eliminar</p>
                         <Image src={deleteProduct} alt='delete' className="max-lg:size-10" />
                      </div>

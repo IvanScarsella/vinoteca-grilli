@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import Image from "next/image";
 import ImagesCarousel from "./components/ImagesCarousel";
@@ -7,16 +7,20 @@ import Card from "./components/Card";
 import wineIcon from "../../public/wineIcon.png"
 import beerIcon from "../../public/beerIcon.png"
 import { useGlobalContext } from "../../context/store";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { SanityDocument } from "next-sanity";
+import { productsQuery } from "@/sanity/lib/queries";
 
-export default function Home() {
+export default async function Home() {
 
-  let {
-    products,
-    showDeliveryModal,
-    setShowDeliveryModal,
-    selectedButton
-  } = useGlobalContext()
+  // let {
+  //   products,
+  //   showDeliveryModal,
+  //   setShowDeliveryModal,
+  //   selectedButton
+  // } = useGlobalContext()
 
+  const products = await sanityFetch<SanityDocument[]>({ query: productsQuery })
 
   const sections = [
     { sectionName: 'Nuestros productos', sectionImage: undefined, products: products, },
@@ -25,7 +29,8 @@ export default function Home() {
   ]
 
   return (
-    <section className={`bg-white1 pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
+    <section className={`bg-white1 pb-20 `}>
+      {/* <section className={`bg-white1 pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}> */}
       <ImagesCarousel />
       {sections.map((section, index) => (
 

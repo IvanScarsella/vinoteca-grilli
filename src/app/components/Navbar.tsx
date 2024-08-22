@@ -57,7 +57,7 @@ export default function Navbar() {
          setShowNotification(false)
       }
    }, [cart])
-   console.log(showNotification)
+
    return (
       <>
          <div className={`w-full h-[70px] max-md:h-[52px] bg-gradient-to-r from-[#7e7c7cba] via-[#969393ba] to-[#adaaaaba] backdrop-blur-sm justify-center items-center gap-8 inline-flex max-sm:hidden fixed z-10 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`} onMouseLeave={() => setShowMenu(false)}>
