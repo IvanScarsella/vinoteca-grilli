@@ -85,7 +85,6 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
    };
 
    const removeFromCart = (slug: string) => {
-      console.log(cart[0].slug, slug)
       setCart(prevCart => {
          const newCart = prevCart.filter(product => product.slug.current !== slug);
          localStorage.setItem('cart', JSON.stringify(newCart));
