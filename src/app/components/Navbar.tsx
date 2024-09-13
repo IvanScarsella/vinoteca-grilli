@@ -103,14 +103,14 @@ export default function Navbar() {
             <div className={`bg-[#F84545] size-[25px] max-lg:size-5 max-sm:size-3.5 fixed lg:top-[195px] sm:top-[131px] max-sm:top-10 right-[11px] max-sm:right-4 z-10 rounded-full ${!showNotification ? 'hidden' : ''}`} ></div>
          </div>
          <div>
-            {isVisible && (
+            {isVisible ? (
                <Image src={arrow} alt='arrow' className={`fixed bottom-[219px] right-[15px] sm:hidden`} onClick={() => {
                   window.scrollTo({
                      top: 0,
                      behavior: 'smooth',
                   });
                }} />
-            )}
+            ) : null}
          </div>
       </>
    )
