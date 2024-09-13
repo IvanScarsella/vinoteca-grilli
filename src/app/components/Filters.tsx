@@ -17,7 +17,6 @@ export default function Filters(products: any) {
    const [selectedSubCategory, setSelectedSubCategory] = useState<string>('')
    const [selectedRegion, setSelectedRegion] = useState<string>('')
    const [selectedVarietal, setSelectedVarietal] = useState<string>('')
-   // console.log(products.products)
 
    useEffect(() => {
       const setFilters = () => {
@@ -27,7 +26,6 @@ export default function Filters(products: any) {
          const varietalFilters: string[] = ['Varietal']
 
          for (let i = 0; i < products.products.length; i++) {
-            // if (products.products[i].category === undefined) console.log(products.products[i])
             if (!categoryFilters.includes(products.products[i].category)) {
                categoryFilters.push(products.products[i].category)
             }
@@ -57,9 +55,6 @@ export default function Filters(products: any) {
       setFilters()
    }, [])
 
-   // console.log(category, subCategory, region, varietal)
-   console.log(selectedCategory, selectedSubCategory, selectedRegion, selectedVarietal)
-
    const orders = ['A-Z', 'Z-A', 'Menor Precio', 'Mayor Precio']
 
    const filters = [
@@ -68,10 +63,7 @@ export default function Filters(products: any) {
       { name: 'Sub-Categoría', options: subCategory, onChange: (value: string) => setSelectedSubCategory(value) },
       { name: 'Region', options: region, onChange: (value: string) => setSelectedRegion(value) },
       { name: 'Varietal', options: varietal, onChange: (value: string) => setSelectedVarietal(value) },
-      // { name: 'Varietal' },
-      // { name: 'Tipo de vino' },
    ]
-   // console.log(filters[0].onClick)
 
    return (
       <>
