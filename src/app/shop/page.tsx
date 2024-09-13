@@ -33,7 +33,7 @@ export default async function Shop() {
                height={475}
             />
          </div>
-         <Filters />
+         <Filters products={products} />
          <div className="bg-white1 pt-20 max-xl:pt-4 flex flex-row gap-4 max-md:gap-2 justify-center w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full min-[1660px]:px-36 max-xl:px-20 max-[850px]:px-1 self-center flex-wrap pb-[78px] ">
             {products.map((product, index) => (
                <Card data={product} className="" key={index} />
