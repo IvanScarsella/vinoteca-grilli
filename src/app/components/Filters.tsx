@@ -4,6 +4,7 @@ import Image from "next/image"
 import filter from "../../../public/filter.png"
 import filterRed from "../../../public/filterRed.png"
 import { useState, useEffect } from "react"
+import { useGlobalContext } from "../../../context/store"
 
 export default function Filters(products: any) {
 
@@ -12,18 +13,31 @@ export default function Filters(products: any) {
    const [subCategory, setSubCategory] = useState<string[]>([])
    const [region, setRegion] = useState<string[]>([])
    const [varietal, setVarietal] = useState<string[]>([])
-   const [orderBy, setOrderBy] = useState<string>('')
-   const [selectedCategory, setSelectedCategory] = useState<string>('')
-   const [selectedSubCategory, setSelectedSubCategory] = useState<string>('')
-   const [selectedRegion, setSelectedRegion] = useState<string>('')
-   const [selectedVarietal, setSelectedVarietal] = useState<string>('')
+   // const [orderBy, setOrderBy] = useState<string>('')
+   // const [selectedCategory, setSelectedCategory] = useState<string>('')
+   // const [selectedSubCategory, setSelectedSubCategory] = useState<string>('')
+   // const [selectedRegion, setSelectedRegion] = useState<string>('')
+   // const [selectedVarietal, setSelectedVarietal] = useState<string>('')
+
+   const {
+      selectedCategory,
+      setSelectedCategory,
+      selectedSubCategory,
+      setSelectedSubCategory,
+      selectedRegion,
+      setSelectedRegion,
+      selectedVarietal,
+      setSelectedVarietal,
+      orderBy,
+      setOrderBy,
+   } = useGlobalContext();
 
    useEffect(() => {
       const setFilters = () => {
-         const categoryFilters: string[] = ['Categoría']
-         const subCategoryFilters: string[] = ['Sub-categoría']
-         const regionFilters: string[] = ['Región']
-         const varietalFilters: string[] = ['Varietal']
+         const categoryFilters: string[] = []
+         const subCategoryFilters: string[] = []
+         const regionFilters: string[] = []
+         const varietalFilters: string[] = []
 
          for (let i = 0; i < products.products.length; i++) {
             if (!categoryFilters.includes(products.products[i].category)) {
@@ -46,10 +60,11 @@ export default function Filters(products: any) {
                varietalFilters.push(products.products[i].varietal[0])
             }
 
-            setCategory(categoryFilters)
-            setSubCategory(subCategoryFilters)
-            setRegion(regionFilters)
-            setVarietal(varietalFilters)
+            // setCategory(categoryFilters)
+            setCategory(['Categoría', ...categoryFilters.sort()])
+            setSubCategory(['Sub-categoría', ...subCategoryFilters.sort()])
+            setRegion((['Región', ...regionFilters.sort()]))
+            setVarietal((['Varietal', ...varietalFilters.sort()]))
          }
       }
       setFilters()
@@ -58,12 +73,12 @@ export default function Filters(products: any) {
    const orders = ['A-Z', 'Z-A', 'Menor Precio', 'Mayor Precio']
 
    const filters = [
-      { name: 'Orden', options: orders, onChange: (value: string) => setOrderBy(value) },
-      { name: 'Categoría', options: category, onChange: (value: string) => setSelectedCategory(value) },
-      { name: 'Sub-Categoría', options: subCategory, onChange: (value: string) => setSelectedSubCategory(value) },
-      { name: 'Region', options: region, onChange: (value: string) => setSelectedRegion(value) },
-      { name: 'Varietal', options: varietal, onChange: (value: string) => setSelectedVarietal(value) },
-   ]
+      { name: "Orden", options: ['A-Z', 'Z-A', 'Menor Precio', 'Mayor Precio'], onChange: setOrderBy },
+      { name: "Categoría", options: category, onChange: setSelectedCategory },
+      { name: "Sub-Categoría", options: subCategory, onChange: setSelectedSubCategory },
+      { name: "Región", options: region, onChange: setSelectedRegion },
+      { name: "Varietal", options: varietal, onChange: setSelectedVarietal },
+   ];
 
    return (
       <>
@@ -76,9 +91,41 @@ export default function Filters(products: any) {
                      className="w-[170px] max-xl:w-40 h-10 rounded-[10px] px-2.5 py-2"
                      key={index}
                      onChange={(e) => filter.onChange(e.target.value)}
+                     hidden={
+                        filter.name === 'Región' && selectedCategory !== 'Vino' ||
+                        filter.name === 'Varietal' && selectedCategory !== 'Vino' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Accesorio' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Bebidas sin Alcohol' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Botánicos' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Gin' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Licor' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Regalería' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Whisky' ||
+                        filter.name === 'Sub-Categoría' &&
+                        !selectedCategory
+                     }
                   >
                      {filter.options.map((category, index2) => (
-                        <option value={category} key={index2}>
+                        <option value={category === 'Categoría' || category === 'Sub-categoría' || category === 'Región' || category === 'Varietal' ? '' : category} key={index2}
+                           hidden={
+                              category === 'Blanc de Blancs' && selectedCategory !== 'Espumante' ||
+                              category === 'Dulce' && selectedCategory !== 'Espumante' ||
+                              category === 'Blanc de Blancs' && selectedCategory !== 'Espumante' ||
+                              category === 'Dulce Natural' && selectedCategory !== 'Espumante' ||
+                              category === 'Extra Brut' && selectedCategory !== 'Espumante' ||
+                              category === 'Rosé' && selectedCategory !== 'Espumante' ||
+                              category === 'Vino Blanco' && selectedCategory !== 'Vino' ||
+                              category === 'Vino Rosado' && selectedCategory !== 'Vino' ||
+                              category === 'Vino Tinto' && selectedCategory !== 'Vino' ||
+                              category === 'Negroni' && selectedCategory !== 'Aperitivo' ||
+                              category === 'Vermouth' && selectedCategory !== 'Aperitivo' ||
+                              category === 'Savage' && selectedCategory !== 'Bebida Blanca' ||
+                              category === 'Ron' && selectedCategory !== 'Bebida Blanca' ||
+                              category === 'Tequila' && selectedCategory !== 'Bebida Blanca' ||
+                              category === 'Vodka' && selectedCategory !== 'Bebida Blanca' ||
+                              category === 'Cuyo' ||
+                              category === 'Luis'
+                           }>
                            {category}
                         </option>
                      ))}
@@ -93,9 +140,40 @@ export default function Filters(products: any) {
             <div className={` flex flex-col mt-2`}>
                <div className={`${!openFilter ? 'hidden' : null} flex flex-col mt-2`}>
                   {filters.map((filter, index) => (
-                     <select className="w-[170px] h-10 rounded-r-[10px] px-4 py-2 text-base border border-black1 text-center" key={index} onChange={(e) => filter.onChange(e.target.value)}>
+                     <select className="w-[170px] h-10 rounded-r-[10px] px-4 py-2 text-base border border-black1 text-center" key={index} onChange={(e) => filter.onChange(e.target.value)} hidden={
+                        filter.name === 'Región' && selectedCategory !== 'Vino' ||
+                        filter.name === 'Varietal' && selectedCategory !== 'Vino' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Accesorio' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Bebidas sin Alcohol' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Botánicos' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Gin' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Licor' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Regalería' ||
+                        filter.name === 'Sub-Categoría' && selectedCategory === 'Whisky' ||
+                        filter.name === 'Sub-Categoría' &&
+                        !selectedCategory
+                     }>
                         {filter.options.map((category, index2) => (
-                           <option value={category} key={index2}>
+                           <option value={category} key={index2}
+                              hidden={
+                                 category === 'Blanc de Blancs' && selectedCategory !== 'Espumante' ||
+                                 category === 'Dulce' && selectedCategory !== 'Espumante' ||
+                                 category === 'Blanc de Blancs' && selectedCategory !== 'Espumante' ||
+                                 category === 'Dulce Natural' && selectedCategory !== 'Espumante' ||
+                                 category === 'Extra Brut' && selectedCategory !== 'Espumante' ||
+                                 category === 'Rosé' && selectedCategory !== 'Espumante' ||
+                                 category === 'Vino Blanco' && selectedCategory !== 'Vino' ||
+                                 category === 'Vino Rosado' && selectedCategory !== 'Vino' ||
+                                 category === 'Vino Tinto' && selectedCategory !== 'Vino' ||
+                                 category === 'Negroni' && selectedCategory !== 'Aperitivo' ||
+                                 category === 'Vermouth' && selectedCategory !== 'Aperitivo' ||
+                                 category === 'Savage' && selectedCategory !== 'Bebida Blanca' ||
+                                 category === 'Ron' && selectedCategory !== 'Bebida Blanca' ||
+                                 category === 'Tequila' && selectedCategory !== 'Bebida Blanca' ||
+                                 category === 'Vodka' && selectedCategory !== 'Bebida Blanca' ||
+                                 category === 'Cuyo' ||
+                                 category === 'Luis'
+                              }>
                               {category}
                            </option>
                         ))}

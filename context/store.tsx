@@ -21,6 +21,17 @@ type GlobalContextType = {
    addToCart: (product: Product) => void;
    removeFromCart: (id: string) => void;
    clearCart: () => void;
+
+   selectedCategory: string;
+   setSelectedCategory: Dispatch<SetStateAction<string>>;
+   selectedSubCategory: string;
+   setSelectedSubCategory: Dispatch<SetStateAction<string>>;
+   selectedRegion: string;
+   setSelectedRegion: Dispatch<SetStateAction<string>>;
+   selectedVarietal: string;
+   setSelectedVarietal: Dispatch<SetStateAction<string>>;
+   orderBy: string;
+   setOrderBy: Dispatch<SetStateAction<string>>;
 };
 
 export const GlobalContext = createContext<GlobalContextType>({
@@ -36,7 +47,18 @@ export const GlobalContext = createContext<GlobalContextType>({
    cart: [],
    addToCart: () => { },
    removeFromCart: () => { },
-   clearCart: () => { }
+   clearCart: () => { },
+
+   selectedCategory: '',
+   setSelectedCategory: () => { },
+   selectedSubCategory: '',
+   setSelectedSubCategory: () => { },
+   selectedRegion: '',
+   setSelectedRegion: () => { },
+   selectedVarietal: '',
+   setSelectedVarietal: () => { },
+   orderBy: '',
+   setOrderBy: () => { },
 });
 
 export type Product = {
@@ -64,6 +86,12 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       const storedCart = typeof window !== 'undefined' ? localStorage.getItem('cart') : null;
       return storedCart ? JSON.parse(storedCart) : [];
    });
+
+   const [selectedCategory, setSelectedCategory] = useState('');
+   const [selectedSubCategory, setSelectedSubCategory] = useState('');
+   const [selectedRegion, setSelectedRegion] = useState('');
+   const [selectedVarietal, setSelectedVarietal] = useState('');
+   const [orderBy, setOrderBy] = useState('');
 
    // const products = [
    //    { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 1 },
@@ -102,6 +130,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       localStorage.setItem('cart', JSON.stringify(cart));
    }, [cart]);
 
+
+
    return (
       <GlobalContext.Provider value={{
          showInstructionsModal,
@@ -116,7 +146,18 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
          cart,
          addToCart,
          removeFromCart,
-         clearCart
+         clearCart,
+
+         selectedCategory,
+         setSelectedCategory,
+         selectedSubCategory,
+         setSelectedSubCategory,
+         selectedRegion,
+         setSelectedRegion,
+         selectedVarietal,
+         setSelectedVarietal,
+         orderBy,
+         setOrderBy,
       }}>
          {children}
       </GlobalContext.Provider>
