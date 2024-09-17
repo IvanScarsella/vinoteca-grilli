@@ -37,7 +37,7 @@ export default async function ProductById({ params }: { params: any }) {
          {/* <section className={`sm:mt-[70px] bg-white1 pb-20 max-sm:pb-7 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''} flex flex-col max-lg:items-center lg:4`}> */}
          {product.slug.current ? (
             <>
-               <p className="text-[#555454] text-2xl max-sm:text-sm sm:text-xl font-normal pt-[34px] min-[360px]:pt-[65px] lg:text-start  lg:ml-9 xl:ml-12">Tienda / Vinos / Tinto / Alamos</p>
+               <p className="text-[#555454] text-2xl max-sm:text-sm sm:text-xl font-normal pt-[34px] min-[360px]:pt-[65px] lg:text-start  lg:ml-9 xl:ml-12">Tienda / {product.category} / {product.subCategory} / Alamos</p>
                <h2 className="text-4xl max-sm:text-xl sm:text-3xl lg:hidden mt-4">{product?.name}</h2>
                <div className="flex flex-row mt-[68px] max-sm:mt-[11px] sm:mt-8 xl:gap-20 max-sm:gap-2 max-lg:gap-8 lg:gap-10 px-[50px] max-sm:px-1.5 max-xl:px-10">
                   <div className="rounded-[10px] h-[600px] max-sm:h-[275px] max-lg:h-[450px] w-[336px] lg:w-[436px] max-sm:w-1/2 min-w-40 overflow-hidden my-auto">
@@ -45,7 +45,7 @@ export default async function ProductById({ params }: { params: any }) {
                         <Image src={builder.image(product.image).width(323).height(500).url()} alt='product-image' width={323} height={500} className="container h-full w-full rounded-[10px] hover:scale-110 transition-all ease-in-out" />
                         : null}
                   </div>
-                  <div className="flex flex-col max-h-full justify-between pt-[13px] min-w-40 max-sm:w-1/2">
+                  <div className="flex flex-col max-h-full justify-around pt-[13px] min-w-40 max-sm:w-1/2">
                      <h2 className="text-4xl max-sm:text-xl max-lg:hidden">{product?.name}</h2>
                      <p className="text-5xl max-sm:text-4xl sm:text-[40px] font-medium">{product?.stock === false ? 'Sin Stock' : '$ ' + product.price}</p>
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.year}>Año: {product?.year}</p>
@@ -77,7 +77,11 @@ export default async function ProductById({ params }: { params: any }) {
                </div>
                <p className="mt-[99px] max-sm:mt-5 sm:mt-8 text-[40px] max-sm:text-2xl lg:ml-9 xl:ml-12">Productos relacionados</p>
                <div className="flex flex-row gap-4 max-md:gap-2 justify-center max-[720px]:justify-start w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full overflow-x-auto scroll-smooth overflow-clip px-4 self-center mt-5">
-                  {relatedProducts.slice(0, 4).map((product: any, index: any) => (
+                  {relatedProducts.filter((product2: any) =>
+                     product2.cellar === product.cellar ||
+                     product2.subCategory === product.subCategory ||
+                     product2.category === product.category
+                  ).slice(0, 4).map((product: any, index: any) => (
                      <Card data={product} key={index} />
                   ))}
                </div>

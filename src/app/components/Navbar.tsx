@@ -25,7 +25,7 @@ export default function Navbar() {
       { title: 'Inicio', src: '/' },
       { title: 'Tienda', src: '/shop' },
       { title: 'Envíos', },
-      { title: 'Contacto', },
+      // { title: 'Contacto', },
    ]
 
    let {
@@ -67,6 +67,11 @@ export default function Navbar() {
                      <div className={`${selectedButton === button.title ? 'text-black1' : 'text-white'} text-[32px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{button.title}</div>
                   </div>
                ))}
+               <a href="https://api.whatsapp.com/send/?phone=5492213995216" target="_blank">
+                  <div className={`${selectedButton === 'Contacto' ? 'bg-yellow1 border-x-4 border-[#f2f2f2] opacity-100' : 'opacity-75'} p-2.5 justify-center items-center gap-2.5 flex cursor-pointer`} key={'Contacto'}>
+                     <div className={`${selectedButton === 'Contacto' ? 'text-black1' : 'text-white'} text-[32px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{'Contacto'}</div>
+                  </div>
+               </a>
             </div>
          </div>
          <div className="flex justify-between px-4 bg-opacity-0 fixed z-10 w-full sm:hidden mt-3">
@@ -95,6 +100,11 @@ export default function Navbar() {
                      {button.title}
                   </p>
                ))}
+               <a href="https://api.whatsapp.com/send/?phone=5492213995216" target="_blank">
+                  <p className="text-sm font-medium cursor-pointer hover:scale-[1.2] hover:pl-4 transition-all ease-in-out" key={'Contacto'}>
+                     {'Contacto'}
+                  </p>
+               </a>
             </div>
             <Image src={pathname !== '/' || '/shop' ? bagBlack : bag} alt="bag" className={`size-10 cursor-pointer hover:scale-[1.2] transition-all ease-in-out ${showCart ? 'hidden' : ''}`} onClick={() => setShowCart((value) => !value)} />
          </div>
