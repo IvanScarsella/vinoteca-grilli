@@ -130,7 +130,9 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       localStorage.setItem('cart', JSON.stringify(cart));
    }, [cart]);
 
-
+   useEffect(() => {
+      setSelectedSubCategory('')
+   }, [selectedCategory])
 
    return (
       <GlobalContext.Provider value={{
