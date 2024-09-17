@@ -104,7 +104,7 @@ export default function Navbar() {
          </div>
          <div>
             {isVisible ? (
-               <Image src={arrow} alt='arrow' className={`fixed bottom-[219px] right-[15px] sm:hidden`} onClick={() => {
+               <Image src={arrow} alt='arrow' className={`fixed bottom-[219px] right-[15px] sm:hidden z-10`} onClick={() => {
                   window.scrollTo({
                      top: 0,
                      behavior: 'smooth',
