@@ -9,12 +9,12 @@ type ShowMoreButtonProps = {
 
 export default function ShowMoreButton({ category }: ShowMoreButtonProps) {
    const router = useRouter();
-   const { setSelectedCategory, setSelectedButton } = useGlobalContext(); // Solo necesitas este hook aquí
+   const { setSelectedCategory, setSelectedButton } = useGlobalContext();
 
    const handleClick = () => {
       setSelectedCategory(category);
       setSelectedButton('Tienda')
-      router.push('/shop'); // Navega a la página de shop
+      router.push('/shop');
    };
 
    return (
