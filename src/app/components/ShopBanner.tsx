@@ -3,7 +3,7 @@
 import Image from "next/image"
 import wineImage from "../../../public/winesImage.png";
 
-export default async function ShopBanner() {
+export default function ShopBanner() {
    return (
       <div className="flex flex-col items-center justify-center w-full h-full max-h-[470px]">
          <Image

@@ -5,7 +5,7 @@ import { SanityDocument } from "next-sanity";
 import { productsQuery } from "@/sanity/lib/queries";
 import Filters from "../components/Filters";
 import ProductList from "../components/ProductList"; // Nuevo componente de cliente para manejar la lógica interactiva
-import ShopBanner from "../components/shopBanner";
+import ShopBanner from "../components/ShopBanner";
 
 export default async function Shop() {
    const products = await sanityFetch<SanityDocument[]>({ query: productsQuery });

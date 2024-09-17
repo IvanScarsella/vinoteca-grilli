@@ -37,7 +37,7 @@ export default async function ProductById({ params }: { params: any }) {
          {/* <section className={`sm:mt-[70px] bg-white1 pb-20 max-sm:pb-7 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''} flex flex-col max-lg:items-center lg:4`}> */}
          {product.slug.current ? (
             <>
-               <p className="text-[#555454] text-2xl max-sm:text-sm sm:text-xl font-normal pt-[34px] min-[360px]:pt-[65px] lg:text-start  lg:ml-9 xl:ml-12">Tienda / {product.category} / {product.subCategory} / Alamos</p>
+               <p className="text-[#555454] text-2xl max-sm:text-sm sm:text-xl font-normal pt-[34px] min-[360px]:pt-[65px] lg:text-start  lg:ml-9 xl:ml-12">Tienda {'/ ' + product.category} {product.subCategory ? '/ ' + product.subCategory : null}</p>
                <h2 className="text-4xl max-sm:text-xl sm:text-3xl lg:hidden mt-4">{product?.name}</h2>
                <div className="flex flex-row mt-[68px] max-sm:mt-[11px] sm:mt-8 xl:gap-20 max-sm:gap-2 max-lg:gap-8 lg:gap-10 px-[50px] max-sm:px-1.5 max-xl:px-10">
                   <div className="rounded-[10px] h-[600px] max-sm:h-[275px] max-lg:h-[450px] w-[336px] lg:w-[436px] max-sm:w-1/2 min-w-40 overflow-hidden my-auto">
