@@ -58,7 +58,7 @@ export default function ProductList({ products }: ProductListProps) {
          {!filteredProducts.length ? <div className="flex flex-col justify-center gap-2 px-2">
             <p className="text-justify">No hay productos que coincidan con los criterios de búsqueda, pruebe modificando los filtros.</p>
             <button className="text-white1 text-xl bg-red-500 w-36 p-1 mx-auto rounded-xl hover:scale-110"
-               onClick={() => { setSelectedCategory(''); setSelectedSubCategory('') }}>Borrar Filtros</button>
+               onClick={() => { setSelectedCategory(''); setSelectedSubCategory(''); setSelectedVarietal(''); setSelectedRegion('') }}>Borrar Filtros</button>
          </div> : null}
       </div>
    );
