@@ -10,12 +10,18 @@ import ShopBanner from "../components/ShopBanner";
 export default async function Shop() {
    const products = await sanityFetch<SanityDocument[]>({ query: productsQuery });
 
+   const sortedProducts = products.sort((a, b) => {
+      if (a.stock === undefined && !b.stock) return -1;
+      if (!a.stock && b.stock === undefined) return 1;
+      return 0;
+   });
+
    return (
       <section className="bg-black1 flex flex-col items-center">
          <ShopBanner />
          {/* Filtros y lista de productos dentro del Client Component */}
-         <Filters products={products} />
-         <ProductList products={products} />
+         <Filters products={sortedProducts} />
+         <ProductList products={sortedProducts} />
       </section>
    );
 }

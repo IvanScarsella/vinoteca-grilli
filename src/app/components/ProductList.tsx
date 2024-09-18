@@ -96,7 +96,27 @@ export default function ProductList({ products }: ProductListProps) {
                </button>
             )}
          </div>
-
+         {filteredProducts.length > productsPerPage && (
+            <div className="flex justify-center items-center gap-4 my-4 px-2">
+               <button
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 text-sm sm:text-base"
+               >
+                  Anterior
+               </button>
+               <span className="text-xs sm:text-sm">
+                  Página {currentPage} de {totalPages}
+               </span>
+               <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 text-sm sm:text-base"
+               >
+                  Siguiente
+               </button>
+            </div>
+         )}
          <div className="flex flex-row gap-4 flex-wrap justify-center">
             {currentProducts.map((product, index) => (
                <Card data={product} key={index} />
@@ -124,7 +144,7 @@ export default function ProductList({ products }: ProductListProps) {
 
          {/* Paginación */}
          {filteredProducts.length > productsPerPage && (
-            <div className="flex justify-center items-center gap-4 mt-8 px-2">
+            <div className="flex justify-center items-center gap-4 mt-4 px-2">
                <button
                   onClick={handlePreviousPage}
                   disabled={currentPage === 1}
