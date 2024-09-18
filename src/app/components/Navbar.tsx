@@ -60,16 +60,16 @@ export default function Navbar() {
 
    return (
       <>
-         <div className={`w-full h-[70px] max-md:h-[52px] bg-gradient-to-r from-[#7e7c7cba] via-[#969393ba] to-[#adaaaaba] backdrop-blur-sm justify-center items-center gap-8 inline-flex max-sm:hidden fixed z-10 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`} onMouseLeave={() => setShowMenu(false)}>
+         <div className={`w-full h-[58px] max-md:h-[52px] bg-gradient-to-r from-[#7e7c7cba] via-[#969393ba] to-[#adaaaaba] backdrop-blur-sm justify-center items-center gap-8 inline-flex max-sm:hidden fixed z-10 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`} onMouseLeave={() => setShowMenu(false)}>
             <div className="self-stretch justify-center items-center gap-8 flex">
                {navbarButtons.map((button) => (
                   <div className={`${selectedButton === button.title ? 'bg-yellow1 border-x-4 border-[#f2f2f2] opacity-100' : 'opacity-75'} p-2.5 justify-center items-center gap-2.5 flex cursor-pointer`} key={button.title} onClick={() => { setSelectedButton(button.title); button.src && button.src !== pathname ? router.push(`${button.src}`) : null; button.title === 'Envíos' ? setShowDeliveryModal(!showDeliveryModal) : null }}>
-                     <div className={`${selectedButton === button.title ? 'text-black1' : 'text-white'} text-[32px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{button.title}</div>
+                     <div className={`${selectedButton === button.title ? 'text-black1' : 'text-white'} text-[24px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{button.title}</div>
                   </div>
                ))}
                <a href="https://api.whatsapp.com/send/?phone=5492213995216" target="_blank">
                   <div className={`${selectedButton === 'Contacto' ? 'bg-yellow1 border-x-4 border-[#f2f2f2] opacity-100' : 'opacity-75'} p-2.5 justify-center items-center gap-2.5 flex cursor-pointer`} key={'Contacto'}>
-                     <div className={`${selectedButton === 'Contacto' ? 'text-black1' : 'text-white'} text-[32px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{'Contacto'}</div>
+                     <div className={`${selectedButton === 'Contacto' ? 'text-black1' : 'text-white'} text-[24px] max-md:text-2xl font-medium hover:scale-110 transition-all ease-in-out`}>{'Contacto'}</div>
                   </div>
                </a>
             </div>
