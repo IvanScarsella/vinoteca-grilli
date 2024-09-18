@@ -47,7 +47,7 @@ export default async function ProductById({ params }: { params: any }) {
                   </div>
                   <div className="flex flex-col max-h-full justify-around pt-[13px] min-w-40 max-sm:w-1/2">
                      <h2 className="text-4xl max-sm:text-xl max-lg:hidden">{product?.name}</h2>
-                     <p className="text-5xl max-sm:text-4xl sm:text-[40px] font-medium">{product?.stock === false ? 'Sin Stock' : '$ ' + product.price}</p>
+                     <p className="text-5xl max-sm:text-4xl sm:text-[40px] font-medium">{product?.stock === false ? 'Sin Stock' : '$ ' + product.price} <span className="text-xl">*</span></p>
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.year}>Año: {product?.year}</p>
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.milliliters}>{product?.milliliters} ml</p>
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.cellar}>Bodega: {product?.cellar}</p>
@@ -69,12 +69,13 @@ export default async function ProductById({ params }: { params: any }) {
                            </select>
                         </div>
                         : null} */}
-                     <div className="flex flex-row max-lg:flex-col gap-6 max-sm:gap-2 2xl:min-w-[724px] xl:min-w-[600px] lg:min-w-[450px] md:min-w-[300px] sm:min-w-48">
+                     <div className="flex flex-row max-lg:flex-col gap-6 max-sm:gap-2 2xl:min-w-[724px] xl:min-w-[600px] lg:min-w-[450px] md:min-w-[300px] sm:min-w-32">
                         <AddToCartButton product={product} />
                         <BuyButton />
                      </div>
                   </div>
                </div>
+               <p className="mt-4 text-base max-md:text-xs ml-12 max-xl:ml-10 max-sm:ml-0 sm:self-start self-center">* Los precios pueden estar sujetos a cambios</p>
                <p className="mt-[99px] max-sm:mt-5 sm:mt-8 text-[40px] max-sm:text-2xl lg:ml-9 xl:ml-12">Productos relacionados</p>
                <div className="flex flex-row gap-4 max-md:gap-2 justify-center max-[720px]:justify-start w-full max-[720px]:w-screen max-[720px]:-mx-4  max-w-full overflow-x-auto scroll-smooth overflow-clip px-4 self-center mt-5">
                   {relatedProducts.filter((product2: any) =>
