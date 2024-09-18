@@ -34,14 +34,17 @@ export default function ProductList({ products }: ProductListProps) {
 
    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
+   const [searchText, setSearchText] = useState(''); // Estado para el texto de búsqueda
+
    useEffect(() => {
-      // Filtrar los productos según los filtros seleccionados
+      // Filtrar los productos según los filtros seleccionados y el texto de búsqueda
       let updatedProducts = products.filter((product) => {
          if (selectedCategory && product.category !== selectedCategory) return false;
          if (selectedSubCategory && product.subCategory !== selectedSubCategory) return false;
          if (selectedRegion && !product.region) return false;
          if (selectedRegion && !product.region.includes(selectedRegion)) return false;
          if (selectedVarietal && !product.varietal.toLocaleString().includes(selectedVarietal)) return false;
+         if (searchText && !product.name.toLowerCase().includes(searchText.toLowerCase())) return false; // Filtrar por nombre
          return true;
       });
 
@@ -57,8 +60,8 @@ export default function ProductList({ products }: ProductListProps) {
       }
 
       setFilteredProducts(updatedProducts);
-      setCurrentPage(1); // Reiniciar a la primera página al aplicar filtros
-   }, [products, selectedCategory, selectedSubCategory, selectedRegion, selectedVarietal, orderBy]);
+      setCurrentPage(1); // Reiniciar a la primera página al aplicar filtros o búsqueda
+   }, [products, selectedCategory, selectedSubCategory, selectedRegion, selectedVarietal, orderBy, searchText]); // Añadir searchText a la dependencia
 
    const handleNextPage = () => {
       if (currentPage < totalPages) {
@@ -73,7 +76,27 @@ export default function ProductList({ products }: ProductListProps) {
    };
 
    return (
-      <div className="bg-white1 pt-20 max-xl:pt-4 flex flex-col items-center w-full  pb-4">
+      <div className="bg-white1 py-4 max-xl:pt-4 flex flex-col items-center w-full">
+         <div className="relative mb-4 w-1/2 max-sm:w-full flex justify-center">
+            <input
+               type="text"
+               placeholder="Buscar..."
+               value={searchText}
+               onChange={(e) => setSearchText(e.target.value)}
+               className="p-2 w-1/2 max-md:w-2/3 max-w-md border rounded-md pr-10" // Agregar padding-right para la cruz
+            />
+
+            {/* Botón para borrar el input */}
+            {searchText && (
+               <button
+                  onClick={() => setSearchText('')} // Al hacer clic, borra el texto
+                  className="absolute right-40 max-2xl:right-36 max-xl:right-32 max-[1150px]:right-28 max-lg:right-24 max-[900px]:right-20 max-md:right-10 max-sm:right-16 max-[470px]:right-9 top-0 mt-2 text-gray-500 hover:text-gray-700"
+               >
+                  &#10005; {/* Este es el símbolo "X" */}
+               </button>
+            )}
+         </div>
+
          <div className="flex flex-row gap-4 flex-wrap justify-center">
             {currentProducts.map((product, index) => (
                <Card data={product} key={index} />
@@ -91,6 +114,7 @@ export default function ProductList({ products }: ProductListProps) {
                      setSelectedSubCategory('');
                      setSelectedVarietal('');
                      setSelectedRegion('');
+                     setSearchText('')
                   }}
                >
                   Borrar Filtros
