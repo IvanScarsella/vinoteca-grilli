@@ -26,13 +26,13 @@ export default async function Home() {
 
   const sections = [
     // { sectionName: 'Nuestros productos', sectionImage: undefined, products: products, },
-    { sectionName: 'Vinos', category: 'Vino', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Vino' && product.stock !== false), },
-    { sectionName: 'Gines', category: 'Gin', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Gin' && product.stock !== false), },
-    { sectionName: 'Espumantes', category: 'Espumante', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Espumante' && product.stock !== false), },
-    { sectionName: 'Aperitivos', category: 'Aperitivo', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Aperitivo' && product.stock !== false), },
-    { sectionName: 'Bebidas Blancas', category: 'Bebida Blanca', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Bebida Blanca' && product.stock !== false), },
-    { sectionName: 'Whiskys', category: 'Whisky', sectionImage: wineIcon, products: products.filter((product: any) => product.category === 'Whisky' && product.stock !== false), },
-    { sectionName: 'Regalería', category: 'Regalería', sectionImage: beerIcon, products: products.filter((product: any) => product.category === 'Regalería' && product.stock !== false), },
+    { sectionName: 'Vinos', category: 'Vino', products: products.filter((product: any) => product.category === 'Vino' && product.stock !== false), },
+    { sectionName: 'Gines', category: 'Gin', products: products.filter((product: any) => product.category === 'Gin' && product.stock !== false), },
+    { sectionName: 'Espumantes', category: 'Espumante', products: products.filter((product: any) => product.category === 'Espumante' && product.stock !== false), },
+    { sectionName: 'Aperitivos', category: 'Aperitivo', products: products.filter((product: any) => product.category === 'Aperitivo' && product.stock !== false), },
+    { sectionName: 'Bebidas Blancas', category: 'Bebida Blanca', products: products.filter((product: any) => product.category === 'Bebida Blanca' && product.stock !== false), },
+    { sectionName: 'Whiskys', category: 'Whisky', products: products.filter((product: any) => product.category === 'Whisky' && product.stock !== false), },
+    { sectionName: 'Regalería', category: 'Regalería', products: products.filter((product: any) => product.category === 'Regalería' && product.stock !== false), },
   ]
 
   return (
@@ -45,7 +45,6 @@ export default async function Home() {
           key={index}
           sectionName={section.sectionName}
           category={section.category}
-          sectionImage={section.sectionImage}
           products={section.products}
         />
       ))}

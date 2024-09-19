@@ -5,6 +5,7 @@ import Card from "./Card";
 import ShowMoreButton from "./ShowMoreButton";
 import Image from "next/image";
 import arrow from '../../../public/arrow.png'
+import wineIcon from "../../../public/wineIcon.png"
 
 type SectionWithPaginationProps = {
    sectionName: string;
@@ -16,7 +17,6 @@ type SectionWithPaginationProps = {
 export default function ProductsSection({
    sectionName,
    products,
-   sectionImage,
    category,
 }: SectionWithPaginationProps) {
    const [currentPage, setCurrentPage] = useState(0);
@@ -38,7 +38,7 @@ export default function ProductsSection({
    return (
       <div className="flex flex-col mb-3">
          <div className="flex flex-row items-center my-[26px] px-[50px] max-md:px-4">
-            {sectionImage ? <img src={sectionImage} alt={sectionName} className="size-[30px] mr-4 max-md:hidden" /> : null}
+            <Image src={wineIcon} alt={sectionName} className="size-[30px] mr-4 max-md:hidden" />
             <p className="text-4xl max-md:text-xl font-normal tracking-tight mr-[33px]">{sectionName}</p>
             <div className="w-full h-px bg-black1" />
             <ShowMoreButton category={category} />
