@@ -21,7 +21,6 @@ export default function Card(data: any) {
    return (
       <div className="h-[500px] w-[323px] max-[1500px]:w-72 max-[1500px]:h-[450px] max-[1356px]:w-56 max-[1104px]:w-40 max-lg:max-w-40 max-[1356px]:h-96 max-[1104px]:h-[280px] rounded-[10px] flex-shrink-0 overflow-hidden" >
          <Image src={builder.image(productData.image).width(323).height(500).url()} alt={productData?.name} width={323} height={500} className="size-full relative top-0 rounded-[10px] hover:scale-110 transition-all ease-in-out" onClick={() => router.push(`/${productData.slug.current}`)} />
-         {/* <Image src={productData?.image} alt={productData?.name} className="size-full relative top-0 rounded-[10px] hover:scale-110 transition-all ease-in-out" onClick={() => router.push(`/${productData.id}`)} /> */}
          <div className="text-white1 relative bottom-[182px] max-md:bottom-[125px] left-0 h-[182px] w-full bg-[#302F2F80] py-[18px] max-md:py-2.5 px-2 max-md:px-1 flex flex-col gap-2.5 md:gap-1  xl:gap-2.5">
             <p className="text-2xl max-xl:text-xl max-lg:text-base max-md:text-sm max-h-16 -mt-2 line-clamp-2" onClick={() => router.push(`/${productData.id}`)}>{productData?.name}</p>
             <p className="text-[32px] max-xl:text-3xl max-lg:text-2xl max-md:text-xl font-medium  absolute top-[70px] max-md:top-12" onClick={() => router.push(`/${productData.id}`)}> {productData?.stock === false ? 'Sin Stock' : '$ ' + productData.price}</p>

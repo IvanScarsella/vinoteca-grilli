@@ -16,7 +16,6 @@ type GlobalContextType = {
    setShowDeliveryModal: Dispatch<SetStateAction<boolean>>;
    selectedButton: string;
    setSelectedButton: Dispatch<SetStateAction<string>>;
-   // products: Product[];
    cart: Product[];
    addToCart: (product: Product) => void;
    removeFromCart: (id: string) => void;
@@ -43,7 +42,6 @@ export const GlobalContext = createContext<GlobalContextType>({
    setShowDeliveryModal: () => { },
    selectedButton: '',
    setSelectedButton: () => { },
-   // products: [] as Product[],
    cart: [],
    addToCart: () => { },
    removeFromCart: () => { },
@@ -93,17 +91,6 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
    const [selectedVarietal, setSelectedVarietal] = useState('');
    const [orderBy, setOrderBy] = useState('');
 
-   // const products = [
-   //    { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 1 },
-   //    { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 2 },
-   //    { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 3 },
-   //    { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 4 },
-   //    { name: 'Nombre del producto', price: 10000, image: product1, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 5 },
-   //    { name: 'Nombre del producto', price: 10000, image: product2, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 2, id: 6 },
-   //    { name: 'Nombre del producto', price: 10000, image: product3, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 0, id: 7 },
-   //    { name: 'Nombre del producto', price: 10000, image: product4, description: 'Lorem ipsum dolor sit amet consectetur. Lorem morbi dui lobortis vitae varius convallis id lobortis. Adipiscing eget tempor mauris ut morbi enim magna.', stock: 1, id: 8 },
-   // ]
-
    const addToCart = (product: Product) => {
       setCart(prevCart => {
          const newCart = [...prevCart, product];
@@ -144,7 +131,6 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
          setShowDeliveryModal,
          selectedButton,
          setSelectedButton,
-         // products,
          cart,
          addToCart,
          removeFromCart,

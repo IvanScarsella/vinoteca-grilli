@@ -26,8 +26,6 @@ export default function Cart() {
       setShowInstructionsModal
    } = useGlobalContext();
 
-   // products.length ? console.log(products[0].product.slug.current) : null
-
    useEffect(() => {
       let total = 0;
       for (let i = 0; i < cart.length; i++) {

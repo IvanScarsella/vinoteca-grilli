@@ -4,7 +4,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityDocument } from "next-sanity";
 import { productsQuery } from "@/sanity/lib/queries";
 import Filters from "../components/Filters";
-import ProductList from "../components/ProductList"; // Nuevo componente de cliente para manejar la lógica interactiva
+import ProductList from "../components/ProductList";
 import ShopBanner from "../components/ShopBanner";
 
 export default async function Shop() {
@@ -17,9 +17,8 @@ export default async function Shop() {
    });
 
    return (
-      <section className="bg-black1 flex flex-col items-center">
+      <section className="bg-white1 flex flex-col items-center">
          <ShopBanner />
-         {/* Filtros y lista de productos dentro del Client Component */}
          <Filters products={sortedProducts} />
          <ProductList products={sortedProducts} />
       </section>

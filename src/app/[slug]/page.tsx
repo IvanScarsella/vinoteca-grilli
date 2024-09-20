@@ -14,27 +14,14 @@ import BuyButton from "../components/BuyButton";
 
 const builder = imageUrlBuilder(client);
 
-// export async function generateStaticParams() {
-//    const products = await client.fetch(productPathsQuery);
-//    return products
-// }
-
 export default async function ProductById({ params }: { params: any }) {
 
    const product = await sanityFetch<SanityDocument>({ query: productQuery, params })
 
    const relatedProducts = await sanityFetch<SanityDocument>({ query: productsQuery, params })
-   // const [productData, setProductData] = useState<Product>()
 
-   // const { products, selectedButton, addToCart, setShowInstructionsModal } = useGlobalContext()
-
-   // useEffect(() => {
-   //    setProductData(products.find((product) => product.id == id.params.id))
-   // }, [id])
-   product ? console.log(product) : null
    return (
       <section className={`sm:mt-[70px] bg-white1 pb-20 max-sm:pb-7  flex flex-col max-lg:items-center lg:4`}>
-         {/* <section className={`sm:mt-[70px] bg-white1 pb-20 max-sm:pb-7 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''} flex flex-col max-lg:items-center lg:4`}> */}
          {product.slug.current ? (
             <>
                <p className="text-[#555454] text-2xl max-sm:text-sm sm:text-xl font-normal pt-[34px] min-[360px]:pt-[65px] lg:text-start  lg:ml-9 xl:ml-12">Tienda {'/ ' + product.category} {product.subCategory ? '/ ' + product.subCategory : null}</p>
@@ -59,16 +46,6 @@ export default async function ProductById({ params }: { params: any }) {
                      ) : null}
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.organic}>{product?.organic === true ? 'Orgánico' : null}</p>
                      <p className="text-2xl max-sm:text-sm sm:text-xl" hidden={!product?.oak}>{product?.oak === true ? 'Roble' : null}</p>
-                     {/* {product?.stock ?
-                        <div className="flex gap-2 items-center justify-around px-2 bg-white1 border border-black1 text-2xl max-sm:text-base w-[172px] max-sm:w-40 rounded-lg">
-                           <p className="">Cantidad</p>
-                           <select name="" id="" className="bg-white1">
-                              <option value="" className="px-20">1</option>
-                              <option value="" className="px-20">2</option>
-                              <option value="" className="px-20">3</option>
-                           </select>
-                        </div>
-                        : null} */}
                      <div className="flex flex-row max-lg:flex-col gap-6 max-sm:gap-2 2xl:min-w-[724px] xl:min-w-[600px] lg:min-w-[450px] md:min-w-[300px] sm:min-w-32">
                         <AddToCartButton product={product} />
                         <BuyButton />

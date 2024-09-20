@@ -25,11 +25,6 @@ export default function Instructions() {
             <div className="text-center font-medium mt-10 max-md:mt-12 text-4xl max-md:text-2xl max-sm:text-lg"> Instrucciones de uso</div>
             <Image src={close} alt='close' className='size-[54px] max-md:size-10 cursor-pointer border border-white rounded-full absolute top-8 max-md:top-2 right-6 max-md:right-2 hover:scale-[1.2] transition-all ease-in-out' onClick={() => setShowInstructionsModal(false)} />
             <div className="mt-[30px] md:mt-12 flex flex-col">
-               {/* {instructionsItems.map((item) => (
-                  <div className="gap-10 inline-flex px-[18px]" key={item}>
-                     <p className="text-[27px] max-md:text-xl font-medium">{item}</p>
-                  </div>
-               ))} */}
                <div className="gap-10 inline-flex px-[18px]" >
                   <p className="text-[27px] max-md:text-xl max-sm:text-base font-medium">1 - Entrá a la tienda</p>
                </div>

@@ -15,29 +15,20 @@ import ProductsSection from "./components/ProductsSection";
 
 export default async function Home() {
 
-  // let {
-  //   products,
-  //   showDeliveryModal,
-  //   setShowDeliveryModal,
-  //   selectedButton
-  // } = useGlobalContext()
-
   const products = await sanityFetch<SanityDocument[]>({ query: productsQuery })
 
   const sections = [
-    // { sectionName: 'Nuestros productos', sectionImage: undefined, products: products, },
     { sectionName: 'Vinos', category: 'Vino', products: products.filter((product: any) => product.category === 'Vino' && product.stock !== false), },
     { sectionName: 'Gines', category: 'Gin', products: products.filter((product: any) => product.category === 'Gin' && product.stock !== false), },
     { sectionName: 'Espumantes', category: 'Espumante', products: products.filter((product: any) => product.category === 'Espumante' && product.stock !== false), },
     { sectionName: 'Aperitivos', category: 'Aperitivo', products: products.filter((product: any) => product.category === 'Aperitivo' && product.stock !== false), },
     { sectionName: 'Bebidas Blancas', category: 'Bebida Blanca', products: products.filter((product: any) => product.category === 'Bebida Blanca' && product.stock !== false), },
-    { sectionName: 'Whiskys', category: 'Whisky', products: products.filter((product: any) => product.category === 'Whisky' && product.stock !== false), },
+    { sectionName: 'Whiskies', category: 'Whisky', products: products.filter((product: any) => product.category === 'Whisky' && product.stock !== false), },
     { sectionName: 'Regalería', category: 'Regalería', products: products.filter((product: any) => product.category === 'Regalería' && product.stock !== false), },
   ]
 
   return (
     <section className={`bg-white1 pb-20 `}>
-      {/* <section className={`bg-white1 pb-20 ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}> */}
       <ImagesCarousel />
       {sections.map((section, index) => (
 

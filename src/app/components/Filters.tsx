@@ -13,11 +13,6 @@ export default function Filters(products: any) {
    const [subCategory, setSubCategory] = useState<string[]>([])
    const [region, setRegion] = useState<string[]>([])
    const [varietal, setVarietal] = useState<string[]>([])
-   // const [orderBy, setOrderBy] = useState<string>('')
-   // const [selectedCategory, setSelectedCategory] = useState<string>('')
-   // const [selectedSubCategory, setSelectedSubCategory] = useState<string>('')
-   // const [selectedRegion, setSelectedRegion] = useState<string>('')
-   // const [selectedVarietal, setSelectedVarietal] = useState<string>('')
 
    const {
       selectedCategory,
