@@ -28,7 +28,7 @@ export default async function Home() {
   ]
 
   return (
-    <section className={`bg-white1 pb-20 `}>
+    <section className={`bg-white1 pb-10 `}>
       <ImagesCarousel />
       {sections.map((section, index) => (
 

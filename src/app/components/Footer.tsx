@@ -16,6 +16,8 @@ export default function Footer() {
    let {
       showInstructionsModal,
       setShowInstructionsModal,
+      showDeliveryModal,
+      setShowDeliveryModal,
       selectedButton,
       setSelectedButton
    } = useGlobalContext()
@@ -23,8 +25,7 @@ export default function Footer() {
    const footerButtons = [
       { title: 'Inicio', src: '/', },
       { title: 'Tienda', src: '/shop', },
-      { title: 'Envío' },
-      { title: 'Contacto' }
+      { title: 'Envíos' },
    ]
 
    const socialMedia = [
@@ -43,9 +44,14 @@ export default function Footer() {
          <div className={`h-96¡ px-[50px] py-6 flex justify-between max-md:flex-col max-md:p-1 max-md:py-2 max-md:gap-4 max-md:h-auto ${selectedButton === 'Envíos' ? 'blur-[2px]' : ''}`}>
             <div className="w-1/3 h-full flex flex-col justify-center gap-6 max-md:flex-row max-md:w-full max-md:px-5">
                {footerButtons.map((button) => (
-                  <p className="font-medium text-[32px] max-md:text-xl max-[450px]:text-base cursor-pointer" key={button.title} onClick={() => { setSelectedButton(button.title); button.src && button.src !== pathname ? router.push(`${button.src}`) : null }}>{button.title}</p>
+                  <p className="font-medium text-[32px] max-md:text-xl max-[450px]:text-base cursor-pointer max-w-56" key={button.title} onClick={() => { setSelectedButton(button.title); button.src && button.src !== pathname ? router.push(`${button.src}`) : null; button.title === 'Envíos' ? setShowDeliveryModal(!showDeliveryModal) : null }}>{button.title}</p>
                )
                )}
+               <a href="https://api.whatsapp.com/send/?phone=5492213995216" target="_blank" className="max-w-56">
+
+                  <div className="font-medium text-[32px] max-md:text-xl max-[450px]:text-base cursor-pointer ">{'Contacto'}</div>
+
+               </a>
             </div>
             <div className="w-1/3 flex flex-col justify-around items-center lg:pr-40 min-[900px]:pr-24 md:pr-16 max-md:w-full max-md:min-h-[191px] max-md:gap-4">
                <Image src={logo} alt='logo' className="size-[146px] min-w-[146px] max-sm:size-24 max-md:min-w-0" />
